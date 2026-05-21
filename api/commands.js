@@ -1,22 +1,19 @@
-import { Redis } from '@upstash/redis';
+import Redis from 'ioredis';
 
-// Upstash Redis credentials are automatically injected by Vercel
-// when you connect Upstash from the Marketplace (UPSTASH_REDIS_REST_URL + TOKEN)
+const SECRET = process.env.COMMANDS_SECRET;
+const REDIS_URL = process.env.REDIS_URL;
+
 let redis = null;
 
 function getRedis() {
-  if (!redis) {
-    redis = Redis.fromEnv();
+  if (!redis && REDIS_URL) {
+    redis = new Redis(REDIS_URL);
   }
   return redis;
 }
 
-const SECRET = process.env.COMMANDS_SECRET;
-const UPSTASH_URL = process.env.UPSTASH_REDIS_REST_URL;
-const UPSTASH_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
-
 function isRedisConfigured() {
-  return UPSTASH_URL && UPSTASH_TOKEN;
+  return !!REDIS_URL;
 }
 
 export default async function handler(req, res) {
@@ -30,7 +27,7 @@ export default async function handler(req, res) {
   }
 
   if (!isRedisConfigured()) {
-    const msg = 'Upstash Redis is not configured. Go to Storage → Upstash, create/connect a Redis database, then redeploy.';
+    const msg = 'REDIS_URL is not configured. Make sure your Redis database is connected and REDIS_URL env var is set, then redeploy.';
     console.error(msg);
     return res.status(500).json({ error: msg });
   }
@@ -38,19 +35,21 @@ export default async function handler(req, res) {
   // ==================== GET ====================
   if (req.method === 'GET') {
     try {
-      const data = await getRedis().get('zne-commands');
+      const raw = await getRedis().get('zne-commands');
 
-      if (data && Array.isArray(data.commands)) {
-        return res.status(200).json(data);
+      if (raw) {
+        const data = JSON.parse(raw);
+        if (data && Array.isArray(data.commands)) {
+          return res.status(200).json(data);
+        }
       }
 
-      // No data yet
       return res.status(200).json({ commands: [] });
     } catch (error) {
       console.error('Redis GET error:', error);
-      return res.status(500).json({ 
-        error: 'Failed to fetch commands from Redis', 
-        details: error?.message || String(error) 
+      return res.status(500).json({
+        error: 'Failed to fetch commands from Redis',
+        details: error?.message || String(error)
       });
     }
   }
@@ -68,7 +67,7 @@ export default async function handler(req, res) {
     }
 
     try {
-      await getRedis().set('zne-commands', { commands });
+      await getRedis().set('zne-commands', JSON.stringify({ commands }));
 
       return res.status(200).json({
         success: true,
@@ -77,9 +76,9 @@ export default async function handler(req, res) {
       });
     } catch (error) {
       console.error('Redis SET error:', error);
-      return res.status(500).json({ 
-        error: 'Failed to save commands to Redis', 
-        details: error?.message || String(error) 
+      return res.status(500).json({
+        error: 'Failed to save commands to Redis',
+        details: error?.message || String(error)
       });
     }
   }
