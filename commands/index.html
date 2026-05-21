@@ -306,14 +306,14 @@
     </div>
 
     <footer>
-        <p>ZNE Raider Commands • Dynamically loaded from <code>commands.json</code></p>
+        <p>ZNE Raider Commands • Live from API (powered by Vercel KV)</p>
     </footer>
 
     <script>
         let allCommands = [];
         let groupedCommands = {};
 
-        // Hardcoded backup data (used if fetch fails on hosting)
+        // Ultimate hardcoded fallback (only used if both API and KV are unavailable)
         const FALLBACK_DATA = {
             "commands": [
                 {"name": "ra1d", "description": "[deprecated] self explanatory.", "category": "Raiding"},
@@ -346,13 +346,22 @@
             const container = document.getElementById('commandsContainer');
 
             try {
-                const response = await fetch('./commands.json');
-                if (!response.ok) throw new Error('Failed to load commands.json');
-
-                const data = await response.json();
-                allCommands = data.commands || [];
-            } catch (error) {
-                console.warn('Using hardcoded fallback commands (fetch failed):', error);
+                // Try the new API first (Vercel KV)
+                const response = await fetch('/api/commands');
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data && Array.isArray(data.commands)) {
+                        allCommands = data.commands;
+                        console.log('%c[ZNE] Loaded commands from API', 'color:#00ff88');
+                    } else {
+                        throw new Error('API returned invalid data');
+                    }
+                } else {
+                    throw new Error(`API returned ${response.status}`);
+                }
+            } catch (apiError) {
+                console.warn('API fetch failed, using hardcoded fallback:', apiError);
                 allCommands = FALLBACK_DATA.commands || [];
             }
 
