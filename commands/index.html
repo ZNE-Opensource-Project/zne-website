@@ -9,7 +9,7 @@
     <!-- Open Graph / Discord Embed -->
     <meta property="og:title" content="ZNE Commands">
     <meta property="og:description" content="View ZNE command list">
-    <meta property="og:url" content="https://zne-website.vercel.app/commands">
+    <meta property="og:url" content="https://zne.breed.app/commands">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="ZNE">
 
@@ -204,6 +204,7 @@
             border-radius: 12px;
             padding: 18px 20px;
             transition: all 0.2s;
+            cursor: pointer;
         }
 
         .command-card:hover {
@@ -256,15 +257,202 @@
             margin-top: 40px;
         }
 
-        .bot-badge {
-            display: inline-block;
-            background: rgba(255, 45, 85, 0.15);
+        footer a {
             color: var(--accent);
-            padding: 4px 14px;
-            border-radius: 20px;
-            font-size: 13px;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+            padding-right: 30px;
+        }
+
+        .modal-command-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
             font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .modal-description {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .modal-section {
+            margin-bottom: 24px;
+        }
+
+        .modal-section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-section-title i {
+            color: var(--accent);
+        }
+
+        .modal-usage {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 18px;
+            color: var(--text-primary);
+            font-size: 14px;
+            word-break: break-all;
+            line-height: 1.6;
+        }
+
+        .modal-usage-meta {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-secondary);
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        .modal-empty {
+            color: var(--text-secondary);
+            font-size: 14px;
+            padding: 8px 0;
+            font-style: italic;
+        }
+
+        .modal-args-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .modal-arg-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+        }
+
+        .modal-arg-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            color: var(--text-primary);
+            min-width: 90px;
+            font-size: 14px;
+        }
+
+        .modal-arg-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+            flex: 1;
+        }
+
+        .modal-arg-required {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .modal-arg-required.required {
+            background: rgba(255, 45, 85, 0.2);
+            color: var(--accent);
+        }
+
+        .modal-arg-required.optional {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--success);
+        }
+
+        /* Scrollbar */
+        .modal::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .modal::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+            border-radius: 3px;
+        }
+
+        .modal::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+
+        .modal::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
         }
     </style>
 </head>
@@ -286,9 +474,9 @@
     <div class="container">
         <!-- Header -->
         <div class="page-header">
-            <div class="bot-badge"><i class="fas fa-rocket"></i> RAIDER BOT</div>
+            <div class="badge"><i class="fas fa-rocket"></i> RAIDER BOT — Slash Commands</div>
             <h1><span class="gradient">Raider</span> Commands</h1>
-            <p>All available commands for the ZNE Raider bot</p>
+            <p>Click any command to view arguments, usage, and description</p>
         </div>
 
         <!-- Search -->
@@ -300,55 +488,77 @@
         <!-- Commands Container -->
         <div id="commandsContainer">
             <div class="loading">
-                <i class="fas fa-spinner fa-spin"></i> Loading commands...
+                <i class="fas fa-circle-notch fa-spin"></i> Loading commands...
             </div>
         </div>
     </div>
 
     <footer>
-        <p>ZNE Raider Commands • Live from API (powered by Vercel KV)</p>
+        <p>ZNE Raider Commands · Live from API (powered by Vercel KV) · Developer: <a href="https://voby.page.gd/" target="_blank">voby7</a></p>
     </footer>
+
+    <!-- Modal -->
+    <div id="commandModal" class="modal-overlay">
+        <div class="modal">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-header">
+                <div id="modalCommandName" class="modal-command-name"></div>
+                <div id="modalDescription" class="modal-description"></div>
+            </div>
+            <div class="modal-section">
+                <div class="modal-section-title"><i class="fas fa-terminal"></i> Usage</div>
+                <div id="modalUsage" class="modal-usage"></div>
+                <div id="modalUsageMeta" class="modal-usage-meta"></div>
+            </div>
+            <div class="modal-section">
+                <div class="modal-section-title"><i class="fas fa-list"></i> Arguments</div>
+                <div id="modalArguments"></div>
+            </div>
+        </div>
+    </div>
 
     <script>
         let allCommands = [];
         let groupedCommands = {};
+        const API_ENDPOINT = '/api/commands';
 
-        // Ultimate hardcoded fallback (only used if both API and KV are unavailable)
+        // Fallback data with arguments included
         const FALLBACK_DATA = {
             "commands": [
-                {"name": "ra1d", "description": "[deprecated] self explanatory.", "category": "Raiding"},
-                {"name": "interaction-ra1d", "description": "interaction raiding.", "category": "Raiding"},
-                {"name": "custom_ra1d", "description": "open the custom ra1d message panel", "category": "Raiding"},
-                {"name": "thug", "description": "thug the server!!", "category": "Raiding"},
-                {"name": "blame", "description": "blame a user for raiding.", "category": "Raiding"},
-                {"name": "say", "description": "say something through the bot.", "category": "Raiding"},
-                {"name": "spam", "description": "spam something.", "category": "Raiding"},
-                {"name": "filespam", "description": "spam a file attachment.", "category": "Raiding"},
-                {"name": "info", "description": "info.", "category": "Raiding"},
-                {"name": "ad", "description": "send the zne advertisement", "category": "Advertisement"},
-                {"name": "lag", "description": "crash peoples phones for fun.", "category": "Lag"},
-                {"name": "dmanon", "description": "dm someone.", "category": "Direct Messages"},
-                {"name": "dmflood", "description": "Send 20 DMs to a user.", "category": "Direct Messages"},
-                {"name": "dmblacklist", "description": "blacklist yourself from dms", "category": "Direct Messages"},
-                {"name": "x-blacklist-server", "description": "blacklist server", "category": "Owner"},
-                {"name": "x-blacklist-user", "description": "blacklist user", "category": "Owner"},
-                {"name": "x-setmessage", "description": "set global msg", "category": "Owner"},
-                {"name": "x-reload-cogs", "description": "reload cogs", "category": "Owner"},
-                {"name": "x-leaveall", "description": "leave servers", "category": "Owner"},
-                {"name": "fakenitro", "description": "send a ULTRA realistic nitro embed.", "category": "Fake"},
-                {"name": "fakemessage", "description": "send a fake message (realistic)", "category": "Fake"},
-                {"name": "ghostping", "description": "ghostping a user or everyone.", "category": "Ghost"},
-                {"name": "ghostsay", "description": "say something then delete", "category": "Ghost"}
+                {"name": "ra1d", "description": "[deprecated] self explanatory.", "category": "Raiding", "arguments": [{"name": "preset", "description": "Optional preset to use for the raid", "required": false}]},
+                {"name": "interaction-ra1d", "description": "interaction raiding.", "category": "Raiding", "arguments": [{"name": "preset", "description": "Optional preset to use for the interaction raid", "required": false}]},
+                {"name": "custom_ra1d", "description": "open the custom ra1d message panel", "category": "Raiding", "arguments": []},
+                {"name": "thug", "description": "thug the server!!", "category": "Raiding", "arguments": []},
+                {"name": "blame", "description": "blame a user for raiding.", "category": "Raiding", "arguments": [{"name": "user", "description": "The user to blame", "required": true}]},
+                {"name": "say", "description": "say something through the bot.", "category": "Raiding", "arguments": [{"name": "text", "description": "The text for the bot to say", "required": true}]},
+                {"name": "spam", "description": "spam something.", "category": "Raiding", "arguments": [{"name": "text", "description": "The message to spam", "required": true}]},
+                {"name": "filespam", "description": "spam a file attachment.", "category": "Raiding", "arguments": [{"name": "attachment", "description": "The file to spam", "required": true}]},
+                {"name": "info", "description": "info.", "category": "Raiding", "arguments": []},
+                {"name": "ad", "description": "send the zne advertisement", "category": "Advertisement", "arguments": []},
+                {"name": "lag", "description": "crash peoples phones for fun.", "category": "Lag", "arguments": []},
+                {"name": "dmanon", "description": "dm someone.", "category": "Direct Messages", "arguments": [{"name": "user_id", "description": "User ID to DM", "required": true}, {"name": "message", "description": "Message to send", "required": true}]},
+                {"name": "dmflood", "description": "Send 20 DMs to a user.", "category": "Direct Messages", "arguments": [{"name": "user_id", "description": "User ID to flood", "required": true}, {"name": "message", "description": "Message to send", "required": true}]},
+                {"name": "dmblacklist", "description": "blacklist yourself from dms", "category": "Direct Messages", "arguments": []},
+                {"name": "x-blacklist-server", "description": "blacklist server", "category": "Owner", "arguments": []},
+                {"name": "x-blacklist-user", "description": "blacklist user", "category": "Owner", "arguments": []},
+                {"name": "x-setmessage", "description": "set global msg", "category": "Owner", "arguments": []},
+                {"name": "x-reload-cogs", "description": "reload cogs", "category": "Owner", "arguments": []},
+                {"name": "x-leaveall", "description": "leave servers", "category": "Owner", "arguments": []},
+                {"name": "fakenitro", "description": "send a ULTRA realistic nitro embed.", "category": "Fake", "arguments": []},
+                {"name": "fakemessage", "description": "send a fake message (realistic)", "category": "Fake", "arguments": [{"name": "user_id", "description": "User ID to spoof", "required": true}, {"name": "message", "description": "Fake message to show", "required": true}]},
+                {"name": "ghostping", "description": "ghostping a user or everyone.", "category": "Ghost", "arguments": []},
+                {"name": "ghostsay", "description": "say something then delete", "category": "Ghost", "arguments": []},
+                {"name": "userinfo", "description": "general info about a user", "category": "Other", "arguments": [{"name": "user", "description": "The user to get info about", "required": false}]},
+                {"name": "permcheck", "description": "check if the server is raidable or not", "category": "Other", "arguments": []},
+                {"name": "fakegiveaway", "description": "send a fake giveaway embed.", "category": "Fake", "arguments": [{"name": "prize", "description": "The prize for the giveaway", "required": true}]},
+                {"name": "fakeban", "description": "simulates banning a user", "category": "Fake", "arguments": [{"name": "user", "description": "The user to fake ban", "required": true}, {"name": "reason", "description": "The reason for the fake ban", "required": true}]}
             ]
         };
 
         async function loadCommands() {
             const container = document.getElementById('commandsContainer');
-
             try {
-                // Try the new API first (Vercel KV)
-                const response = await fetch('/api/commands');
-                
+                const response = await fetch(API_ENDPOINT, { cache: 'no-store' });
                 if (response.ok) {
                     const data = await response.json();
                     if (data && Array.isArray(data.commands)) {
@@ -361,11 +571,10 @@
                     throw new Error(`API returned ${response.status}`);
                 }
             } catch (apiError) {
-                console.warn('API fetch failed, using hardcoded fallback:', apiError);
+                console.warn('API fetch failed, using offline fallback:', apiError);
                 allCommands = FALLBACK_DATA.commands || [];
             }
 
-            // Group by category
             groupedCommands = {};
             allCommands.forEach(cmd => {
                 const cat = cmd.category || 'Other';
@@ -376,32 +585,119 @@
             renderCommands();
         }
 
-        function renderCommands(filteredCommands = null) {
+        function buildCommandSyntax(cmd) {
+            const args = cmd.arguments || [];
+            if (!args.length) return '/' + cmd.name;
+            const parts = args.map(a => a.required ? '<' + a.name + '>' : '[' + a.name + ']');
+            return '/' + cmd.name + ' ' + parts.join(' ');
+        }
+
+        function renderArguments(cmd) {
+            const args = cmd.arguments || [];
+            if (!args.length) {
+                return '<div class="modal-empty">No arguments (this command takes no input).</div>';
+            }
+
+            const items = args.map(a => {
+                const cls = a.required ? 'required' : 'optional';
+                const label = a.required ? 'Required' : 'Optional';
+                const name = a.name || 'unknown';
+                const desc = a.description || '—';
+                return '<div class="modal-arg-item">' +
+                    '<div class="modal-arg-name"><' + name + '></div>' +
+                    '<div class="modal-arg-desc">' + desc + '</div>' +
+                    '<div class="modal-arg-required ' + cls + '">' + label + '</div>' +
+                '</div>';
+            });
+
+            return '<div class="modal-args-list">' + items.join('') + '</div>';
+        }
+
+        function renderCommandModal(cmd) {
+            document.getElementById('modalCommandName').textContent = '/' + cmd.name;
+            document.getElementById('modalDescription').textContent = cmd.description || 'No description provided.';
+            document.getElementById('modalUsage').textContent = buildCommandSyntax(cmd);
+
+            const argCount = (cmd.arguments || []).length;
+            const requiredCount = (cmd.arguments || []).filter(a => a.required).length;
+            document.getElementById('modalUsageMeta').textContent = requiredCount + ' required, ' + (argCount - requiredCount) + ' optional';
+
+            document.getElementById('modalArguments').innerHTML = renderArguments(cmd);
+        }
+
+        function openModal(cmd) {
+            renderCommandModal(cmd);
+            const overlay = document.getElementById('commandModal');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const overlay = document.getElementById('commandModal');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('modalClose').addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeModal();
+        });
+
+        document.getElementById('commandModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        function renderCommands(filteredList = null) {
             const container = document.getElementById('commandsContainer');
             container.innerHTML = '';
 
-            const commandsToShow = filteredCommands || groupedCommands;
-            const isFiltered = !!filteredCommands;
+            const source = filteredList || groupedCommands;
+            const isFlat = Array.isArray(source);
 
-            if (Object.keys(commandsToShow).length === 0) {
-                container.innerHTML = `
-                    <div class="no-results">
-                        <p>No commands found matching your search.</p>
-                    </div>
-                `;
+            const entries = isFlat ? [] : Object.entries(source);
+            if (!isFlat && entries.length === 0) {
+                container.innerHTML = '<div class="no-results"><p>No commands found.</p></div>';
                 return;
             }
 
-            // Sort categories (Raiding first, then others)
+            const appendGrid = (commands, target) => {
+                if (!commands || !commands.length) return;
+                const grid = document.createElement('div');
+                grid.className = 'commands-grid';
+                commands.forEach(cmd => {
+                    const card = document.createElement('div');
+                    card.className = 'command-card';
+                    card.innerHTML =
+                        '<div class="command-name">' + cmd.name + '</div>' +
+                        '<div class="command-desc">' + (cmd.description || 'No description provided.') + '</div>';
+                    card.addEventListener('click', function() {
+                        openModal(cmd);
+                    });
+                    grid.appendChild(card);
+                });
+                target.appendChild(grid);
+            };
+
+            if (isFlat) {
+                const section = document.createElement('div');
+                section.className = 'category';
+                appendGrid(source, section);
+                container.appendChild(section);
+                return;
+            }
+
             const categoryOrder = ['Raiding', 'Direct Messages', 'Fake', 'Ghost', 'Lag', 'Advertisement', 'Owner', 'Other'];
-            const sortedCategories = Object.keys(commandsToShow).sort((a, b) => {
-                const indexA = categoryOrder.indexOf(a);
-                const indexB = categoryOrder.indexOf(b);
-                return (indexA === -1 ? 999 : indexA) - (indexB === -1 ? 999 : indexB);
+            entries.sort((a, b) => {
+                const idxA = categoryOrder.indexOf(a[0]);
+                const idxB = categoryOrder.indexOf(b[0]);
+                return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
             });
 
-            sortedCategories.forEach(category => {
-                const commands = commandsToShow[category];
+            entries.forEach(([category, commands]) => {
                 if (!commands || commands.length === 0) return;
 
                 const section = document.createElement('div');
@@ -409,86 +705,62 @@
 
                 const header = document.createElement('div');
                 header.className = 'category-header';
-                header.innerHTML = `
-                    <h2>${category}</h2>
-                    <span class="count">${commands.length} commands</span>
-                `;
+                header.innerHTML =
+                    '<h2>' + category + '</h2>' +
+                    '<span class="count">' + commands.length + ' commands</span>';
                 section.appendChild(header);
 
-                const grid = document.createElement('div');
-                grid.className = 'commands-grid';
-
-                commands.forEach(cmd => {
-                    const card = document.createElement('div');
-                    card.className = 'command-card';
-                    card.innerHTML = `
-                        <div class="command-name">${cmd.name}</div>
-                        <div class="command-desc">${cmd.description || 'No description provided.'}</div>
-                    `;
-                    grid.appendChild(card);
-                });
-
-                section.appendChild(grid);
+                appendGrid(commands, section);
                 container.appendChild(section);
             });
         }
 
         function filterCommands() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
-
-            if (!searchTerm) {
+            const term = document.getElementById('searchInput').value.toLowerCase().trim();
+            if (!term) {
                 renderCommands();
                 return;
             }
-
-            // Filter and regroup
             const filtered = {};
             allCommands.forEach(cmd => {
-                const matchesName = cmd.name.toLowerCase().includes(searchTerm);
-                const matchesDesc = (cmd.description || '').toLowerCase().includes(searchTerm);
-                const matchesCat = (cmd.category || '').toLowerCase().includes(searchTerm);
-
-                if (matchesName || matchesDesc || matchesCat) {
+                const mName = cmd.name.toLowerCase().includes(term);
+                const mDesc = (cmd.description || '').toLowerCase().includes(term);
+                const mCat = (cmd.category || '').toLowerCase().includes(term);
+                const mArgs = (cmd.arguments || []).some(function(a) {
+                    return (a.name + ' ' + (a.description || '')).toLowerCase().includes(term);
+                });
+                if (mName || mDesc || mCat || mArgs) {
                     const cat = cmd.category || 'Other';
                     if (!filtered[cat]) filtered[cat] = [];
                     filtered[cat].push(cmd);
                 }
             });
-
             renderCommands(filtered);
         }
 
-        // Keyboard focus on search
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCommands();
+            initSearchFocus();
+
+            document.getElementById('searchInput').addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    e.target.value = '';
+                    filterCommands();
+                }
+            });
+        });
+
         function initSearchFocus() {
-            document.addEventListener('keydown', (e) => {
+            document.addEventListener('keydown', function(e) {
                 if (e.key === '/' && document.activeElement.tagName === 'BODY') {
                     e.preventDefault();
                     document.getElementById('searchInput').focus();
                 }
             });
 
-            // Show hint
             const search = document.getElementById('searchInput');
             search.setAttribute('placeholder', 'Search commands... (press / to focus)');
         }
-
-        // Initialize
-        function init() {
-            loadCommands();
-            initSearchFocus();
-
-            // Optional: Press Escape to clear search
-            document.getElementById('searchInput').addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    e.target.value = '';
-                    filterCommands();
-                }
-            });
-
-            console.log('%c[ZNE] Raider Commands page initialized', 'color:#ff2d55');
-        }
-
-        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
