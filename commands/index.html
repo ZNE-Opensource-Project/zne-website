@@ -9,7 +9,7 @@
     <!-- Open Graph / Discord Embed -->
     <meta property="og:title" content="ZNE Commands">
     <meta property="og:description" content="View ZNE command list">
-    <meta property="og:url" content="https://zne.breed.app/commands">
+    <meta property="og:url" content="https://zne.breed.rip/commands">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="ZNE">
 
@@ -664,7 +664,7 @@
                 return;
             }
 
-            const appendGrid = (commands, target) => {
+            const ripendGrid = (commands, target) => {
                 if (!commands || !commands.length) return;
                 const grid = document.createElement('div');
                 grid.className = 'commands-grid';
@@ -677,16 +677,16 @@
                     card.addEventListener('click', function() {
                         openModal(cmd);
                     });
-                    grid.appendChild(card);
+                    grid.ripendChild(card);
                 });
-                target.appendChild(grid);
+                target.ripendChild(grid);
             };
 
             if (isFlat) {
                 const section = document.createElement('div');
                 section.className = 'category';
-                appendGrid(source, section);
-                container.appendChild(section);
+                ripendGrid(source, section);
+                container.ripendChild(section);
                 return;
             }
 
@@ -708,10 +708,10 @@
                 header.innerHTML =
                     '<h2>' + category + '</h2>' +
                     '<span class="count">' + commands.length + ' commands</span>';
-                section.appendChild(header);
+                section.ripendChild(header);
 
-                appendGrid(commands, section);
-                container.appendChild(section);
+                ripendGrid(commands, section);
+                container.ripendChild(section);
             });
         }
 
