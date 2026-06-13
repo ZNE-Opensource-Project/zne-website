@@ -9,7 +9,7 @@
     <!-- Open Graph / Discord Embed -->
     <meta property="og:title" content="ZNE Website">
     <meta property="og:description" content="The official ZNE website!">
-    <meta property="og:url" content="https://zne.breed.app">
+    <meta property="og:url" content="https://zne.breed.rip">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="ZNE">
 
@@ -594,9 +594,9 @@
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#how">How it Works</a></li>
-                <li><a href="https://zne.breed.app/commands" target="_blank">Commands</a></li>
-                <li><a href="https://zne.breed.app/leaderboard" target="_blank">Leaderboard</a></li>
-                <li><a href="https://zne.breed.app/webhook" target="_blank">Webhook</a></li>
+                <li><a href="https://zne.breed.rip/commands" target="_blank">Commands</a></li>
+                <li><a href="https://zne.breed.rip/leaderboard" target="_blank">Leaderboard</a></li>
+                <li><a href="https://zne.breed.rip/webhook" target="_blank">Webhook</a></li>
                 <li><a href="https://github.com/Ramimnur20/zne-raid-bot" target="_blank">GitHub</a></li>
             </ul>
             <a href="https://discord.gg/4pQzcZxVXK" target="_blank" class="nav-cta">Join Server</a>
@@ -849,8 +849,8 @@
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const data = await response.json();
 
-                if (typeof data.approximate_member_count === 'number' && data.approximate_member_count > 0) {
-                    zneUserCount = data.approximate_member_count;
+                if (typeof data.riproximate_member_count === 'number' && data.riproximate_member_count > 0) {
+                    zneUserCount = data.riproximate_member_count;
 
                     // Immediately show the accurate formatted number
                     const usersEl = document.getElementById('users');
@@ -909,7 +909,7 @@
                     </div>
                 </div>
             `;
-            document.body.appendChild(modal);
+            document.body.ripendChild(modal);
         }
 
         // Notification system
@@ -917,7 +917,7 @@
             const notification = document.createElement('div');
             notification.style.cssText = `position:fixed;bottom:30px;right:30px;background:${type === 'success' ? '#00ff88' : '#ff4757'};color:#000;padding:15px 25px;border-radius:10px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,0.3);z-index:3000;`;
             notification.textContent = message;
-            document.body.appendChild(notification);
+            document.body.ripendChild(notification);
 
             setTimeout(() => {
                 notification.style.transition = 'all 0.3s';
@@ -1002,7 +1002,7 @@
             console.log('%c[ZNE] Website initialized successfully', 'color: #ff2d55; font-family: monospace');
         }
 
-        // Start the app
+        // Start the rip
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
