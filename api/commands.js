@@ -32,6 +32,7 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: msg });
   }
 
+  // ==================== GET ====================
   if (req.method === 'GET') {
     try {
       const raw = await getRedis().get('zne-commands');
