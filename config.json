@@ -1,0 +1,196 @@
+{
+  "mainPage": {
+    "meta": {
+      "title": "ZNE Website",
+      "description": "The official ZNE website!",
+      "ogUrl": "https://zne.breed.rip"
+    },
+    "inviteLinks": {
+      "mainServer": "https://discord.gg/4pQzcZxVXK",
+      "raiderHero": "https://ptb.discord.com/oauth2/authorize?client_id=1504768633992118312",
+      "raiderCta": "https://ptb.discord.com/oauth2/authorize?client_id=1513900511881855006",
+      "nuker": "https://ptb.discord.com/oauth2/authorize?client_id=1505052447020814467",
+      "github": "https://github.com/Ramimnur20/zne-raid-bot",
+      "commands": "https://zne.breed.rip/commands",
+      "leaderboard": "https://zne.breed.rip/leaderboard",
+      "webhook": "https://zne.breed.rip/webhook"
+    },
+    "nav": {
+      "links": [
+        { "label": "Features", "href": "#features" },
+        { "label": "How it Works", "href": "#how" },
+        { "label": "Commands", "href": "https://zne.breed.rip/commands", "targetBlank": true },
+        { "label": "Leaderboard", "href": "https://zne.breed.rip/leaderboard", "targetBlank": true },
+        { "label": "Webhook", "href": "https://zne.breed.rip/webhook", "targetBlank": true },
+        { "label": "GitHub", "href": "https://github.com/Ramimnur20/zne-raid-bot", "targetBlank": true }
+      ],
+      "cta": {
+        "label": "Join Server",
+        "href": "https://discord.gg/4pQzcZxVXK"
+      }
+    },
+    "eventPill": {
+      "href": "https://zne.breed.rip/summer",
+      "icon": "fas fa-sun",
+      "text": "Summer Event: Free Nuke Bot Premium"
+    },
+    "hero": {
+      "titleHtml": "Meet <span class=\"gradient\">ZNE</span><br>The Ultimate<br>Discord Nuker.",
+      "description": "Powerful, fast, and undetectable. The most advanced Discord nuke and raid bot on the market.",
+      "buttons": [
+        {
+          "label": "Join Main Server",
+          "href": "https://discord.gg/4pQzcZxVXK",
+          "icon": "fab fa-discord",
+          "className": "btn-primary"
+        },
+        {
+          "label": "Invite Raider",
+          "href": "https://ptb.discord.com/oauth2/authorize?client_id=1504768633992118312",
+          "icon": "fas fa-rocket",
+          "className": "btn-secondary"
+        },
+        {
+          "label": "Invite Nuker",
+          "href": "https://ptb.discord.com/oauth2/authorize?client_id=1505052447020814467",
+          "icon": "fas fa-bomb",
+          "className": "btn-secondary"
+        }
+      ],
+      "preview": {
+        "avatar": "Z",
+        "name": "ZNE#0001",
+        "status": "● Online",
+        "messages": [
+          {
+            "avatar": "👤",
+            "author": "User",
+            "text": ".nuke",
+            "bot": false
+          },
+          {
+            "avatar": "Z",
+            "author": "ZNE",
+            "text": "💥 Nuking server... 142 channels deleted",
+            "bot": true
+          },
+          {
+            "avatar": "Z",
+            "author": "ZNE",
+            "text": "✅ Complete. Server neutralized.",
+            "bot": true
+          }
+        ]
+      }
+    },
+    "stats": [
+      {
+        "id": "servers",
+        "value": 20,
+        "label": "Servers Nuked"
+      },
+      {
+        "id": "users",
+        "value": 839,
+        "label": "Active Users",
+        "liveInvite": "QKSsF6tWpF"
+      },
+      {
+        "id": "uptime",
+        "value": 99.9,
+        "label": "Uptime",
+        "suffix": "%"
+      }
+    ],
+    "features": [
+      {
+        "icon": "fas fa-bolt",
+        "title": "Lightning Fast",
+        "description": "Delete 500+ channels in under 3 seconds. ZNE uses optimized API calls and parallel processing."
+      },
+      {
+        "icon": "fas fa-shield-alt",
+        "title": "Undetectable",
+        "description": "You WON'T get caught using ZNE Nuker."
+      },
+      {
+        "icon": "fas fa-rocket",
+        "title": "Feature Loaded",
+        "description": "20+ commands ready at your disposal."
+      },
+      {
+        "icon": "fas fa-cog",
+        "title": "Customizable",
+        "description": "Fully configurable nuking templates, custom messages, and role hierarchies."
+      },
+      {
+        "icon": "fas fa-sync",
+        "title": "Auto Recovery",
+        "description": "Back up any Servers before nuking."
+      },
+      {
+        "icon": "fas fa-user-secret",
+        "title": "Stealth Mode",
+        "description": "Hidden presence, no logs, encrypted communications. Stay completely invisible."
+      }
+    ],
+    "steps": [
+      {
+        "number": 1,
+        "title": "Join the Server",
+        "description": "Connect with the ZNE community for support, updates, and direct bot invites."
+      },
+      {
+        "number": 2,
+        "title": "Invite the Bots",
+        "description": "Add Raider and Nuker to any server using the one-click invite buttons above."
+      },
+      {
+        "number": 3,
+        "title": "Execute & Destroy",
+        "description": "Use powerful commands to nuke channels, massban members, and raid servers instantly."
+      }
+    ],
+    "warning": {
+      "icon": "fas fa-exclamation-triangle",
+      "title": "Important Notice",
+      "description": "Using ZNE violates Discord's Terms of Service. This tool is provided for educational and research purposes only. The developers are not responsible for any misuse or account terminations. Use at your own risk."
+    },
+    "cta": {
+      "title": "Ready to Take Control?",
+      "description": "Invite the official ZNE bots directly to your servers",
+      "buttons": [
+        {
+          "label": "Join Main Server",
+          "href": "https://discord.gg/4pQzcZxVXK",
+          "icon": "fab fa-discord",
+          "className": "btn-primary",
+          "large": true
+        },
+        {
+          "label": "Invite Raider",
+          "href": "https://ptb.discord.com/oauth2/authorize?client_id=1513900511881855006",
+          "icon": "fas fa-rocket",
+          "className": "btn-secondary"
+        },
+        {
+          "label": "Invite Nuker",
+          "href": "https://ptb.discord.com/oauth2/authorize?client_id=1505052447020814467",
+          "icon": "fas fa-bomb",
+          "className": "btn-secondary"
+        }
+      ],
+      "githubLabel": "View source on GitHub",
+      "terminal": {
+        "lines": [
+          "$ git clone https://github.com/Ramimnur20/zne-raid-bot.git",
+          "$ Self-host your own ZNE instance"
+        ]
+      }
+    },
+    "footer": {
+      "copyright": "© 2026 ZNE Development Team. All rights reserved.",
+      "disclaimer": "Not affiliated with Discord Inc. • For educational purposes only"
+    }
+  }
+}

@@ -25,8 +25,8 @@
             --bg-primary: #0a0a0f;
             --bg-secondary: #121218;
             --bg-tertiary: #1a1a22;
-            --accent: #ff2d55;
-            --accent-hover: #ff4d6d;
+            --accent: #971DFB;
+            --accent-hover: #971DFB;
             --text-primary: #ffffff;
             --text-secondary: #a0a0b0;
             --border: #2a2a35;
@@ -86,7 +86,7 @@
         .logo-icon {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, var(--accent), #ff6b6b);
+            background: linear-gradient(135deg, var(--accent), #971DFB);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -147,7 +147,7 @@
             gap: 10px;
             padding: 10px 18px;
             border-radius: 999px;
-            background: linear-gradient(135deg, rgba(255, 209, 102, 0.16), rgba(255, 45, 85, 0.16));
+            background: linear-gradient(135deg, rgba(255, 209, 102, 0.16), rgba(151, 29, 251, 0.16));
             border: 1px solid rgba(255, 209, 102, 0.45);
             color: var(--text-primary);
             text-decoration: none;
@@ -184,7 +184,7 @@
             align-items: center;
             padding-top: 80px;
             position: relative;
-            background: radial-gradient(ellipse at center, rgba(255, 45, 85, 0.05) 0%, transparent 70%);
+            background: radial-gradient(ellipse at center, rgba(151, 29, 251, 0.05) 0%, transparent 70%);
         }
 
         .hero-content {
@@ -203,7 +203,7 @@
         }
 
         .hero-text .gradient {
-            background: linear-gradient(135deg, var(--accent), #ff6b6b);
+            background: linear-gradient(135deg, var(--accent), #971DFB);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -242,7 +242,7 @@
         .btn-primary:hover {
             background: var(--accent-hover);
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 45, 85, 0.3);
+            box-shadow: 0 10px 30px rgba(151, 29, 251, 0.3);
         }
 
         .btn-secondary {
@@ -285,7 +285,7 @@
         .discord-avatar {
             width: 36px;
             height: 36px;
-            background: linear-gradient(135deg, var(--accent), #ff6b6b);
+            background: linear-gradient(135deg, var(--accent), #971DFB);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -343,7 +343,7 @@
         }
 
         .discord-msg.bot .msg-avatar {
-            background: linear-gradient(135deg, var(--accent), #ff6b6b);
+            background: linear-gradient(135deg, var(--accent), #971DFB);
         }
 
         .discord-msg.bot .msg-author {
@@ -424,7 +424,7 @@
         .feature-icon {
             width: 56px;
             height: 56px;
-            background: rgba(255, 45, 85, 0.1);
+            background: rgba(151, 29, 251, 0.1);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -635,7 +635,7 @@
                 <div class="logo-icon">Z</div>
                 <span class="logo-text">ZNE</span>
             </a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#how">How it Works</a></li>
                 <li><a href="https://zne.breed.rip/commands" target="_blank">Commands</a></li>
@@ -643,12 +643,12 @@
                 <li><a href="https://zne.breed.rip/webhook" target="_blank">Webhook</a></li>
                 <li><a href="https://github.com/Ramimnur20/zne-raid-bot" target="_blank">GitHub</a></li>
             </ul>
-            <a href="https://discord.gg/4pQzcZxVXK" target="_blank" class="nav-cta">Join Server</a>
+            <a href="https://discord.gg/4pQzcZxVXK" target="_blank" class="nav-cta" id="navCta">Join Server</a>
         </div>
     </nav>
 
     <div class="event-pill-wrapper">
-        <a href="https://zne.breed.rip/summer" class="event-pill">
+        <a href="https://zne.breed.rip/summer" class="event-pill" id="eventPill">
             <i class="fas fa-sun"></i>
             Summer Event: Free Nuke Bot Premium
         </a>
@@ -659,9 +659,9 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Meet <span class="gradient">ZNE</span><br>The Ultimate<br>Discord Nuker.</h1>
-                    <p>Powerful, fast, and undetectable. The most advanced Discord nuke and raid bot on the market.</p>
-                    <div class="hero-buttons">
+                    <h1 id="heroTitle">Meet <span class="gradient">ZNE</span><br>The Ultimate<br>Discord Nuker.</h1>
+                    <p id="heroDescription">Powerful, fast, and undetectable. The most advanced Discord nuke and raid bot on the market.</p>
+                    <div class="hero-buttons" id="heroButtons">
                         <a href="https://discord.gg/4pQzcZxVXK" target="_blank" class="btn btn-primary">
                             <i class="fab fa-discord"></i> Join Main Server
                         </a>
@@ -676,13 +676,13 @@
                 <div class="hero-visual">
                     <div class="bot-preview">
                         <div class="discord-header">
-                            <div class="discord-avatar">Z</div>
+                            <div class="discord-avatar" id="botAvatar">Z</div>
                             <div class="discord-info">
-                                <h4>ZNE#0001</h4>
-                                <span>● Online</span>
+                                <h4 id="botName">ZNE#0001</h4>
+                                <span id="botStatus">● Online</span>
                             </div>
                         </div>
-                        <div class="discord-messages">
+                        <div class="discord-messages" id="botMessages">
                             <div class="discord-msg">
                                 <div class="msg-avatar">👤</div>
                                 <div class="msg-content">
@@ -710,7 +710,7 @@
             </div>
 
             <!-- Stats -->
-            <div class="stats">
+            <div class="stats" id="stats">
                 <div class="stat">
                     <div class="stat-number" id="servers">20</div>
                     <div class="stat-label">Servers Nuked</div>
@@ -734,7 +734,7 @@
                 <h2>Why Choose ZNE?</h2>
                 <p>Built for speed, stealth, and maximum destruction</p>
             </div>
-            <div class="features-grid">
+            <div class="features-grid" id="featuresGrid">
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-bolt"></i>
@@ -788,7 +788,7 @@
                 <h2>How It Works</h2>
                 <p>Get started in under 60 seconds</p>
             </div>
-            <div class="steps">
+            <div class="steps" id="steps">
                 <div class="step">
                     <div class="step-number">1</div>
                     <h3>Join the Server</h3>
@@ -810,7 +810,7 @@
 
     <!-- Warning -->
     <div class="container">
-        <div class="warning">
+        <div class="warning" id="warning">
             <h3><i class="fas fa-exclamation-triangle"></i> Important Notice</h3>
             <p>Using ZNE violates Discord's Terms of Service. This tool is provided for educational and research purposes only. The developers are not responsible for any misuse or account terminations. Use at your own risk.</p>
         </div>
@@ -820,10 +820,10 @@
     <section id="download" class="section">
         <div class="container">
             <div class="cta">
-                <h2>Ready to Take Control?</h2>
-                <p>Invite the official ZNE bots directly to your servers</p>
+                <h2 id="ctaTitle">Ready to Take Control?</h2>
+                <p id="ctaDescription">Invite the official ZNE bots directly to your servers</p>
                 
-                <div class="hero-buttons" style="justify-content: center; flex-wrap: wrap; gap: 12px;">
+                <div class="hero-buttons" style="justify-content: center; flex-wrap: wrap; gap: 12px;" id="ctaButtons">
                     <a href="https://discord.gg/4pQzcZxVXK" target="_blank" class="btn btn-primary" style="font-size:18px; padding:16px 32px;">
                         <i class="fab fa-discord"></i> Join Main Server
                     </a>
@@ -835,13 +835,13 @@
                     </a>
                 </div>
 
-                <div style="margin-top: 30px;">
+                <div id="githubSource" style="margin-top: 30px;">
                     <a href="https://github.com/Ramimnur20/zne-raid-bot" target="_blank" style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">
                         <i class="fab fa-github"></i> View source on GitHub
                     </a>
                 </div>
 
-                <div class="terminal" style="text-align: left; max-width: 500px; margin: 25px auto 0; font-size:12px;">
+                <div class="terminal" id="terminal" style="text-align: left; max-width: 500px; margin: 25px auto 0; font-size:12px;">
                     <div class="terminal-line"><span class="terminal-prompt">$</span> git clone https://github.com/Ramimnur20/zne-raid-bot.git</div>
                     <div class="terminal-line"><span class="terminal-prompt">$</span> Self-host your own ZNE instance</div>
                 </div>
@@ -852,30 +852,282 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 ZNE Development Team. All rights reserved.</p>
-            <p style="margin-top: 8px; font-size: 12px;">Not affiliated with Discord Inc. • For educational purposes only</p>
+            <p id="footerCopyright">&copy; 2026 ZNE Development Team. All rights reserved.</p>
+            <p id="footerDisclaimer" style="margin-top: 8px; font-size: 12px;">Not affiliated with Discord Inc. • For educational purposes only</p>
         </div>
     </footer>
 
     <script>
-        // Animated counters
+        function escapeHtml(value) {
+            return String(value ?? '').replace(/[&<>"']/g, char => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            }[char]));
+        }
+
+        let mainPageConfig = null;
+        let zneUserCount = 839;
+
+        function setMeta(selector, value) {
+            const element = document.querySelector(selector);
+            if (element && value) element.setAttribute('content', value);
+        }
+
+        function createButton(button, className = 'btn') {
+            const anchor = document.createElement('a');
+            anchor.href = button.href;
+            anchor.target = '_blank';
+            anchor.rel = 'noopener noreferrer';
+            anchor.className = `${className} ${button.className || ''}`.trim();
+
+            if (button.large) {
+                anchor.style.fontSize = '18px';
+                anchor.style.padding = '16px 32px';
+            }
+
+            anchor.innerHTML = button.icon
+                ? `<i class="${escapeHtml(button.icon)}"></i> ${escapeHtml(button.label)}`
+                : escapeHtml(button.label);
+
+            return anchor;
+        }
+
+        function renderNav() {
+            const navLinks = document.getElementById('navLinks');
+            const navCta = document.getElementById('navCta');
+
+            if (!navLinks || !navCta) return;
+
+            navLinks.innerHTML = '';
+            mainPageConfig.nav.links.forEach(link => {
+                const item = document.createElement('li');
+                const anchor = document.createElement('a');
+
+                anchor.href = link.href;
+                anchor.textContent = link.label;
+
+                if (link.targetBlank) {
+                    anchor.target = '_blank';
+                    anchor.rel = 'noopener noreferrer';
+                }
+
+                item.appendChild(anchor);
+                navLinks.appendChild(item);
+            });
+
+            navCta.href = mainPageConfig.nav.cta.href;
+            navCta.textContent = mainPageConfig.nav.cta.label;
+        }
+
+        function renderEventPill() {
+            const eventPill = document.getElementById('eventPill');
+            if (!eventPill) return;
+
+            eventPill.href = mainPageConfig.eventPill.href;
+            eventPill.innerHTML = `<i class="${escapeHtml(mainPageConfig.eventPill.icon)}"></i> ${escapeHtml(mainPageConfig.eventPill.text)}`;
+        }
+
+        function renderHero() {
+            const heroTitle = document.getElementById('heroTitle');
+            const heroDescription = document.getElementById('heroDescription');
+            const heroButtons = document.getElementById('heroButtons');
+
+            if (heroTitle) heroTitle.innerHTML = mainPageConfig.hero.titleHtml;
+            if (heroDescription) heroDescription.textContent = mainPageConfig.hero.description;
+            if (heroButtons) {
+                heroButtons.innerHTML = '';
+                mainPageConfig.hero.buttons.forEach(button => heroButtons.appendChild(createButton(button)));
+            }
+        }
+
+        function renderPreview() {
+            document.getElementById('botAvatar').textContent = mainPageConfig.hero.preview.avatar;
+            document.getElementById('botName').textContent = mainPageConfig.hero.preview.name;
+            document.getElementById('botStatus').textContent = mainPageConfig.hero.preview.status;
+
+            const botMessages = document.getElementById('botMessages');
+            if (!botMessages) return;
+
+            botMessages.innerHTML = '';
+            mainPageConfig.hero.preview.messages.forEach(message => {
+                const wrapper = document.createElement('div');
+                wrapper.className = `discord-msg${message.bot ? ' bot' : ''}`;
+                wrapper.innerHTML = `
+                    <div class="msg-avatar">${escapeHtml(message.avatar)}</div>
+                    <div class="msg-content">
+                        <div class="msg-author">${escapeHtml(message.author)}</div>
+                        <div class="msg-text">${escapeHtml(message.text)}</div>
+                    </div>
+                `;
+                botMessages.appendChild(wrapper);
+            });
+        }
+
+        function renderStats() {
+            const stats = document.getElementById('stats');
+            if (!stats) return;
+
+            stats.innerHTML = '';
+            mainPageConfig.stats.forEach(stat => {
+                const statEl = document.createElement('div');
+                statEl.className = 'stat';
+                statEl.innerHTML = `
+                    <div class="stat-number" id="${escapeHtml(stat.id)}">${escapeHtml(stat.id === 'users' ? formatUserCount(Number(stat.value || 0)) : `${stat.value ?? ''}${stat.suffix || ''}`)}</div>
+                    <div class="stat-label">${escapeHtml(stat.label)}</div>
+                `;
+                stats.appendChild(statEl);
+            });
+        }
+
+        function renderFeatures() {
+            const featuresGrid = document.getElementById('featuresGrid');
+            if (!featuresGrid) return;
+
+            featuresGrid.innerHTML = '';
+            mainPageConfig.features.forEach(feature => {
+                const card = document.createElement('div');
+                card.className = 'feature-card';
+                card.innerHTML = `
+                    <div class="feature-icon">
+                        <i class="${escapeHtml(feature.icon)}"></i>
+                    </div>
+                    <h3>${escapeHtml(feature.title)}</h3>
+                    <p>${escapeHtml(feature.description)}</p>
+                `;
+                featuresGrid.appendChild(card);
+            });
+        }
+
+        function renderSteps() {
+            const steps = document.getElementById('steps');
+            if (!steps) return;
+
+            steps.innerHTML = '';
+            mainPageConfig.steps.forEach(step => {
+                const stepEl = document.createElement('div');
+                stepEl.className = 'step';
+                stepEl.innerHTML = `
+                    <div class="step-number">${escapeHtml(step.number)}</div>
+                    <h3>${escapeHtml(step.title)}</h3>
+                    <p>${escapeHtml(step.description)}</p>
+                `;
+                steps.appendChild(stepEl);
+            });
+        }
+
+        function renderWarning() {
+            const warning = document.getElementById('warning');
+            if (!warning) return;
+
+            warning.innerHTML = `
+                <h3><i class="${escapeHtml(mainPageConfig.warning.icon)}"></i> ${escapeHtml(mainPageConfig.warning.title)}</h3>
+                <p>${escapeHtml(mainPageConfig.warning.description)}</p>
+            `;
+        }
+
+        function renderTerminal() {
+            const terminal = document.getElementById('terminal');
+            if (!terminal) return;
+
+            terminal.innerHTML = '';
+            mainPageConfig.cta.terminal.lines.forEach(line => {
+                const content = line.startsWith('$ ') ? line.slice(2) : line;
+                const lineEl = document.createElement('div');
+                lineEl.className = 'terminal-line';
+                lineEl.innerHTML = `<span class="terminal-prompt">$</span> ${escapeHtml(content)}`;
+                terminal.appendChild(lineEl);
+            });
+        }
+
+        function renderCta() {
+            const ctaTitle = document.getElementById('ctaTitle');
+            const ctaDescription = document.getElementById('ctaDescription');
+            const ctaButtons = document.getElementById('ctaButtons');
+            const githubSource = document.getElementById('githubSource');
+
+            if (ctaTitle) ctaTitle.textContent = mainPageConfig.cta.title;
+            if (ctaDescription) ctaDescription.textContent = mainPageConfig.cta.description;
+
+            if (ctaButtons) {
+                ctaButtons.innerHTML = '';
+                mainPageConfig.cta.buttons.forEach(button => ctaButtons.appendChild(createButton(button)));
+            }
+
+            if (githubSource) {
+                githubSource.innerHTML = `
+                    <a href="${escapeHtml(mainPageConfig.inviteLinks.github)}" target="_blank" rel="noopener noreferrer" style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">
+                        <i class="fab fa-github"></i> ${escapeHtml(mainPageConfig.cta.githubLabel)}
+                    </a>
+                `;
+            }
+
+            renderTerminal();
+        }
+
+        function renderFooter() {
+            const copyright = document.getElementById('footerCopyright');
+            const disclaimer = document.getElementById('footerDisclaimer');
+
+            if (copyright) copyright.textContent = mainPageConfig.footer.copyright;
+            if (disclaimer) disclaimer.textContent = mainPageConfig.footer.disclaimer;
+        }
+
+        function applyMainPageConfig() {
+            if (!mainPageConfig) return;
+
+            document.title = mainPageConfig.meta.title;
+            setMeta('meta[name="description"]', mainPageConfig.meta.description);
+            setMeta('meta[property="og:description"]', mainPageConfig.meta.description);
+            setMeta('meta[property="og:url"]', mainPageConfig.meta.ogUrl);
+
+            renderNav();
+            renderEventPill();
+            renderHero();
+            renderPreview();
+            renderStats();
+            renderFeatures();
+            renderSteps();
+            renderWarning();
+            renderCta();
+            renderFooter();
+        }
+
+        async function loadMainPageConfig() {
+            try {
+                const response = await fetch('config.json', { cache: 'no-cache' });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+                const data = await response.json();
+                mainPageConfig = data.mainPage;
+                applyMainPageConfig();
+            } catch (err) {
+                console.warn('[ZNE] Could not load config.json:', err.message || err);
+            }
+        }
+
         function animateCounter(element, target, suffix = '') {
+            if (!element) return;
+
             const duration = 2000;
             const start = 0;
-            const increment = target / (duration / 16);
+            const normalizedTarget = Number(target) || 0;
+            const increment = normalizedTarget / (duration / 16);
             let current = start;
 
             const timer = setInterval(() => {
                 current += increment;
-                if (current >= target) {
+                if (current >= normalizedTarget) {
                     clearInterval(timer);
-                    if (target % 1 === 0) {
-                        element.textContent = Math.floor(target) + suffix;
+                    if (normalizedTarget % 1 === 0) {
+                        element.textContent = Math.floor(normalizedTarget) + suffix;
                     } else {
-                        element.textContent = target + suffix;
+                        element.textContent = normalizedTarget + suffix;
                     }
                 } else {
-                    if (target % 1 === 0) {
+                    if (normalizedTarget % 1 === 0) {
                         element.textContent = Math.floor(current) + suffix;
                     } else {
                         element.textContent = current.toFixed(1) + suffix;
@@ -884,9 +1136,6 @@
             }, 16);
         }
 
-        // Live user count from Discord invite (for the "Active Users" stat)
-        let zneUserCount = 839; // fallback (~800)
-
         function formatUserCount(count) {
             if (count >= 1000) {
                 return (count / 1000).toFixed(1) + 'k';
@@ -894,10 +1143,21 @@
             return Math.floor(count).toString();
         }
 
+        function getStatsConfig() {
+            return mainPageConfig?.stats || [];
+        }
+
+        function getStat(id) {
+            return getStatsConfig().find(stat => stat.id === id);
+        }
+
         async function LoadLiveUsers() {
+            const usersStat = getStat('users');
             const usersEl = document.getElementById('users');
+            if (!usersStat?.liveInvite) return;
+
             try {
-                const response = await fetch('https://discord.com/api/v10/invites/QKSsF6tWpF?with_counts=true');
+                const response = await fetch(`https://discord.com/api/v10/invites/${encodeURIComponent(usersStat.liveInvite)}?with_counts=true`);
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const data = await response.json();
 
@@ -918,22 +1178,30 @@
             await LoadLiveUsers();
         }
 
-        // Initialize counters on scroll
         function initCounters() {
-            const stats = document.querySelectorAll('.stat-number');
-            let animated = false;
+            const statsById = Object.fromEntries(getStatsConfig().map(stat => [stat.id, stat]));
+            const serversStat = statsById.servers || { value: 20 };
+            const uptimeStat = statsById.uptime || { value: 99.9, suffix: '%' };
+            const usersTarget = zneUserCount >= 1000 ? zneUserCount / 1000 : zneUserCount;
+            const usersSuffix = zneUserCount >= 1000 ? 'k' : '';
 
+            const animate = () => {
+                animateCounter(document.getElementById('servers'), Number(serversStat.value || 0), serversStat.suffix || '');
+                animateCounter(document.getElementById('users'), usersTarget, usersSuffix);
+                animateCounter(document.getElementById('uptime'), Number(uptimeStat.value || 0), uptimeStat.suffix || '');
+            };
+
+            if (!('IntersectionObserver' in window)) {
+                animate();
+                return;
+            }
+
+            let animated = false;
             const observer = new IntersectionObserver((entries) => {
                 if (entries[0].isIntersecting && !animated) {
                     animated = true;
-                    animateCounter(document.getElementById('servers'), 20, '');
-                    if (zneUserCount >= 1000) {
-                        const usersTarget = zneUserCount / 1000;
-                        animateCounter(document.getElementById('users'), usersTarget, 'k');
-                    } else {
-                        animateCounter(document.getElementById('users'), zneUserCount, '');
-                    }
-                    animateCounter(document.getElementById('uptime'), 99.9, '%');
+                    animate();
+                    observer.disconnect();
                 }
             });
 
@@ -941,7 +1209,6 @@
             if (statsSection) observer.observe(statsSection);
         }
 
-        // Setup guide modal
         function showSetup() {
             const modal = document.createElement('div');
             modal.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:2000;';
@@ -952,7 +1219,7 @@
                     <ol style="line-height:2;color:#a0a0b0;font-size:15px;padding-left:20px;">
                         <li>Clone or download the ZNE repository</li>
                         <li>Install dependencies: <code style="background:#1a1a22;padding:2px 8px;border-radius:4px;">npm install</code></li>
-                        <li>Create a Discord bot at <a href="https://discord.com/developers" target="_blank" style="color:#ff2d55;">discord.com/developers</a></li>
+                        <li>Create a Discord bot at <a href="https://discord.com/developers" target="_blank" style="color:#971DFB;">discord.com/developers</a></li>
                         <li>Add your bot token to <code style="background:#1a1a22;padding:2px 8px;border-radius:4px;">config.json</code></li>
                         <li>Run the bot: <code style="background:#1a1a22;padding:2px 8px;border-radius:4px;">node index.js</code></li>
                         <li>Invite ZNE to your target server with admin permissions</li>
@@ -966,7 +1233,6 @@
             document.body.appendChild(modal);
         }
 
-        // Notification system
         function showNotification(message, type = 'success') {
             const notification = document.createElement('div');
             notification.style.cssText = `position:fixed;bottom:30px;right:30px;background:${type === 'success' ? '#00ff88' : '#ff4757'};color:#000;padding:15px 25px;border-radius:10px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,0.3);z-index:3000;`;
@@ -980,7 +1246,6 @@
             }, 4000);
         }
 
-        // Smooth scroll for nav links
         function initSmoothScroll() {
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
@@ -993,7 +1258,6 @@
             });
         }
 
-        // Terminal typing effect
         function initTerminal() {
             const terminal = document.querySelector('.terminal');
             if (!terminal) return;
@@ -1008,7 +1272,6 @@
             });
         }
 
-        // Keyboard shortcut for "nuke" easter egg
         function initEasterEgg() {
             let keys = '';
             document.addEventListener('keypress', (e) => {
@@ -1017,6 +1280,8 @@
 
                 if (keys.includes('nuke')) {
                     const hero = document.querySelector('.hero');
+                    if (!hero) return;
+
                     hero.style.transition = 'all 0.1s';
                     hero.style.transform = 'translateX(0)';
 
@@ -1035,16 +1300,14 @@
             });
         }
 
-        // Initialize everything
-        function init() {
-            LoadLiveUsers();
-            fetchRealUserCount();
+        async function init() {
+            await loadMainPageConfig();
+            await fetchRealUserCount();
             initCounters();
             initSmoothScroll();
             initTerminal();
             initEasterEgg();
 
-            // Add subtle parallax to hero
             window.addEventListener('scroll', () => {
                 const scrolled = window.pageYOffset;
                 const hero = document.querySelector('.hero');
@@ -1053,11 +1316,9 @@
                 }
             });
 
-            // Log initialization
-            console.log('%c[ZNE] Website initialized successfully', 'color: #ff2d55; font-family: monospace');
+            console.log('%c[ZNE] Website initialized successfully', 'color: #971DFB; font-family: monospace');
         }
 
-        // Start the app
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
