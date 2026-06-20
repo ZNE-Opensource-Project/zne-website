@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZNE • Streaming</title>
+    <meta name="description" content="Free streaming experience powered by vidsrc.fyi">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg: #0a0a0f;
+            --bg2: #121218;
+            --bg3: #1a1a22;
+            --accent: #971DFB;
+            --text: #ffffff;
+            --text2: #a0a0b0;
+            --border: #2a2a35;
+            --success: #00ff88;
+            --danger: #ff4757;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), #971DFB);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        .logo-text { font-weight: 700; font-size: 24px; }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            color: var(--text2);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text);
+        }
+        .nav-links a.active {
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 2px;
+        }
+
+        .page-header {
+            padding: 100px 20px 40px;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-size: 44px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+        }
+        .page-header h1 .gradient {
+            background: linear-gradient(135deg, var(--accent), #971DFB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .page-header p {
+            color: var(--text2);
+            font-size: 17px;
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
+
+        .search-wrapper {
+            max-width: 640px;
+            margin: 0 auto 30px;
+        }
+        .search-box {
+            display: flex;
+            gap: 10px;
+            align-items: stretch;
+        }
+        .search-input {
+            flex: 1;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 18px;
+            color: var(--text);
+            font-size: 16px;
+            font-family: 'Inter', system-ui, sans-serif;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .search-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(151, 29, 251, 0.15);
+        }
+        .search-input::placeholder {
+            color: var(--text2);
+        }
+        .search-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 0 24px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        .search-btn:hover {
+            background: #7d14e0;
+        }
+        .search-btn:active {
+            transform: scale(0.97);
+        }
+        .search-hint {
+            text-align: center;
+            color: var(--text2);
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        .search-hint a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .search-hint a:hover {
+            text-decoration: underline;
+        }
+
+        .error-toast {
+            background: var(--danger);
+            color: white;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            margin: 0 auto 20px;
+            max-width: 500px;
+            display: none;
+            animation: fadeInUp 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        .error-toast.show {
+            display: block;
+        }
+
+        .player-wrapper {
+            max-width: 1000px;
+            margin: 0 auto 60px;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            display: none;
+            animation: fadeInUp 0.4s ease;
+        }
+        .player-wrapper.visible {
+            display: block;
+        }
+        .player-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg3);
+        }
+        .player-header span {
+            font-size: 13px;
+            color: var(--text2);
+            font-weight: 500;
+        }
+        .player-header .url-link {
+            color: var(--accent);
+            font-size: 12px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .player-header .url-link:hover {
+            text-decoration: underline;
+        }
+        .player-iframe {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: none;
+            background: #000;
+        }
+
+        footer {
+            padding: 40px 20px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text2);
+            font-size: 13px;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .page-header h1 {
+                font-size: 32px;
+            }
+            .player-header {
+                flex-direction: column;
+                gap: 6px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">Z</div>
+                <span class="logo-text">ZNE</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#how">How it Works</a></li>
+                <li><a href="streaming.html" class="active">Streaming</a></li>
+            </ul>
+            <a href="https://discord.gg/4pQzcZxVXK" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:10px 18px;border-radius:8px;font-weight:600;text-decoration:none;background:var(--accent);color:white;font-size:14px;">Join Server</a>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Free <span class="gradient">Streaming</span></h1>
+            <p>Enter an IMDb ID (starting with <strong>tt</strong>) to instantly load and stream any movie or TV show for free.</p>
+
+            <div class="search-wrapper">
+                <form class="search-box" id="streamingForm" autocomplete="off">
+                    <input
+                        type="text"
+                        id="imdbInput"
+                        class="search-input"
+                        placeholder="Enter IMDb ID (e.g. tt1234567)"
+                        maxlength="30"
+                        spellcheck="false"
+                        required
+                    >
+                    <button type="submit" class="search-btn">
+                        <i class="fas fa-play"></i> Play
+                    </button>
+                </form>
+                <div class="error-toast" id="errorToast"></div>
+                <div class="search-hint">
+                    Need to find an IMDb ID? <a href="https://www.imdb.com/find" target="_blank" rel="noopener noreferrer">Search on IMDb</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="player-wrapper" id="playerWrapper">
+            <div class="player-header">
+                <span id="playerLabel">Now Playing</span>
+                <a class="url-link" id="playerUrlLink" href="#" target="_blank" rel="noopener noreferrer">Open in new tab <i class="fas fa-external-link-alt"></i></a>
+            </div>
+            <iframe
+                id="playerFrame"
+                class="player-iframe"
+                src=""
+                allowfullscreen
+                allow="autoplay; encrypted-media; fullscreen"
+            ></iframe>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Powered by vidsrc.fyi &middot; For personal and educational use only.</p>
+        </div>
+    </footer>
+
+    <script>
+        const form = document.getElementById('streamingForm');
+        const input = document.getElementById('imdbInput');
+        const errorToast = document.getElementById('errorToast');
+        const playerWrapper = document.getElementById('playerWrapper');
+        const playerFrame = document.getElementById('playerFrame');
+        const playerUrlLink = document.getElementById('playerUrlLink');
+        const playerLabel = document.getElementById('playerLabel');
+
+        let errorTimer = null;
+
+        function showError(message) {
+            if (errorTimer) clearTimeout(errorTimer);
+            errorToast.textContent = message;
+            errorToast.classList.add('show');
+            errorTimer = setTimeout(() => {
+                errorToast.classList.remove('show');
+            }, 4000);
+        }
+
+        function buildEmbedUrl(raw) {
+            const value = (raw || '').trim();
+            if (/^tt\d+$/i.test(value)) {
+                return `https://vidsrc.fyi/embed/movie/${value}`;
+            }
+            throw new Error('IMDb ID must start with "tt" followed by numbers only (e.g. tt1234567)');
+        }
+
+        function loadStream(raw) {
+            try {
+                const url = buildEmbedUrl(raw);
+                playerFrame.src = url;
+                playerUrlLink.href = url;
+                playerLabel.textContent = `Playing • ${raw.trim()}`;
+                playerWrapper.classList.add('visible');
+                playerWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                errorToast.classList.remove('show');
+            } catch (e) {
+                playerWrapper.classList.remove('visible');
+                playerFrame.src = '';
+                showError(e.message);
+            }
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            loadStream(input.value);
+        });
+
+        input.addEventListener('input', () => {
+            if (errorToast.classList.contains('show')) {
+                errorToast.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
