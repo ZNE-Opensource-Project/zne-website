@@ -19,18 +19,24 @@
     <meta name="twitter:description" content="View ZNE command list">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #121218;
-            --bg-tertiary: #1a1a22;
-            --accent: #971DFB;
-            --accent-hover: #971DFB;
+            --bg-primary: #0c0d0d;
+            --bg-secondary: #161717;
+            --bg-tertiary: #1f2020;
+            --bg-panel: #111212;
+            --accent: #92c8d2;
+            --accent-2: #6b8f9b;
+            --accent-light: #b2ccd5;
+            --accent-hover: #b2ccd5;
+            --accent-rgb: 146, 200, 210;
             --text-primary: #ffffff;
-            --text-secondary: #a0a0b0;
-            --border: #2a2a35;
-            --success: #00ff88;
+            --text-secondary: #a1a1aa;
+            --border: #242525;
+            --border-strong: #333434;
+            --gold: #ffd166;
+            --success: #1db954;
         }
 
         * {
@@ -40,11 +46,23 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+            pointer-events: none;
+            background: radial-gradient(60% 50% at 50% 0%, rgba(var(--accent-rgb), 0.16) 0%, transparent 60%);
+        }
+
+        h1, h2, h3 { font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.02em; }
 
         .container {
             max-width: 1200px;
@@ -54,12 +72,13 @@
 
         /* Navbar */
         nav {
-            background: rgba(10, 10, 15, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
             z-index: 100;
+            background: radial-gradient(1161.83% 494.55% at 50% 49.09%, #111212 5.32%, #1c1b1b 30.31%);
+            backdrop-filter: blur(7.5px);
+            -webkit-backdrop-filter: blur(7.5px);
+            border-bottom: 1px solid var(--border);
         }
 
         .nav-content {
@@ -82,13 +101,15 @@
         .logo-icon {
             width: 36px;
             height: 36px;
-            background: linear-gradient(135deg, var(--accent), #971DFB);
+            background: linear-gradient(135deg, var(--accent-light), var(--accent-2));
+            color: #0c0d0d;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 16px;
+            box-shadow: 0 0 16px rgba(var(--accent-rgb), 0.35);
         }
 
         .logo-text {
@@ -125,9 +146,25 @@
         }
 
         .page-header .gradient {
-            background: linear-gradient(135deg, var(--accent), #971DFB);
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            padding: 7px 13px;
+            border: 1px solid rgba(var(--accent-rgb), 0.35);
+            border-radius: 999px;
+            background: rgba(var(--accent-rgb), 0.08);
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
         }
 
         .page-header p {
@@ -373,7 +410,7 @@
         }
 
         .modal-usage-meta {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             color: var(--text-secondary);
             font-size: 12px;
             margin-top: 8px;
@@ -427,12 +464,12 @@
         }
 
         .modal-arg-required.required {
-            background: rgba(151, 29, 251, 0.2);
+            background: rgba(var(--accent-rgb), 0.18);
             color: var(--accent);
         }
 
         .modal-arg-required.optional {
-            background: rgba(0, 255, 136, 0.1);
+            background: rgba(29, 185, 84, 0.12);
             color: var(--success);
         }
 

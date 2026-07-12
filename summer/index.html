@@ -12,18 +12,23 @@
     <meta property="og:site_name" content="ZNE">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #121218;
-            --bg-tertiary: #1a1a22;
-            --accent: #971DFB;
-            --accent-hover: #971DFB;
+            --bg-primary: #0c0d0d;
+            --bg-secondary: #161717;
+            --bg-tertiary: #1f2020;
+            --bg-panel: #111212;
+            --accent: #92c8d2;
+            --accent-2: #6b8f9b;
+            --accent-light: #b2ccd5;
+            --accent-hover: #b2ccd5;
+            --accent-rgb: 146, 200, 210;
             --text-primary: #ffffff;
-            --text-secondary: #a0a0b0;
-            --border: #2a2a35;
-            --success: #00ff88;
+            --text-secondary: #a1a1aa;
+            --border: #242525;
+            --border-strong: #333434;
+            --success: #1db954;
             --gold: #ffd166;
         }
 
@@ -34,12 +39,24 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+            pointer-events: none;
+            background: radial-gradient(60% 50% at 50% 0%, rgba(var(--accent-rgb), 0.14) 0%, transparent 60%);
+        }
+
+        h1, h2, h3 { font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.02em; }
 
         .container {
             max-width: 1200px;
@@ -53,18 +70,24 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(10, 10, 15, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
+            padding: 14px 20px;
+            background: transparent;
+            border-bottom: none;
         }
 
         .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
+            padding: 12px 22px;
             max-width: 1200px;
             margin: 0 auto;
+            background: radial-gradient(1161.83% 494.55% at 50% 49.09%, #111212 5.32%, #1c1b1b 30.31%);
+            backdrop-filter: blur(7.5px);
+            -webkit-backdrop-filter: blur(7.5px);
+            border: 1px solid var(--border);
+            border-radius: 1.25rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
         }
 
         .logo {
@@ -78,13 +101,15 @@
         .logo-icon {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, var(--accent), #971DFB);
+            background: linear-gradient(135deg, var(--accent-light), var(--accent-2));
+            color: #0c0d0d;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 18px;
+            box-shadow: 0 0 18px rgba(var(--accent-rgb), 0.4);
         }
 
         .logo-text {
@@ -133,12 +158,12 @@
             position: relative;
             background:
                 radial-gradient(circle at 20% 20%, rgba(255, 209, 102, 0.12), transparent 28%),
-                radial-gradient(circle at 80% 30%, rgba(151, 29, 251, 0.14), transparent 30%),
-                linear-gradient(180deg, rgba(10, 10, 15, 0.96), rgba(10, 10, 15, 1));
+                radial-gradient(circle at 80% 30%, rgba(var(--accent-rgb), 0.14), transparent 30%),
+                linear-gradient(180deg, rgba(12, 13, 13, 0.96), rgba(12, 13, 13, 1));
         }
 
         .event-card {
-            background: rgba(18, 18, 24, 0.92);
+            background: rgba(17, 18, 18, 0.92);
             border: 1px solid rgba(255, 209, 102, 0.35);
             border-radius: 28px;
             padding: 60px;
@@ -151,7 +176,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(151, 29, 251, 0.08), transparent 45%);
+            background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.08), transparent 45%);
             pointer-events: none;
         }
 
@@ -215,14 +240,14 @@
         }
 
         .btn-primary {
-            background: var(--accent);
-            color: white;
+            background: linear-gradient(180deg, var(--accent-light), var(--accent) 60%);
+            color: #0c0d0d;
         }
 
         .btn-primary:hover {
-            background: var(--accent-hover);
+            filter: brightness(1.06);
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(151, 29, 251, 0.3);
+            box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.3);
         }
 
         .btn-secondary {

@@ -19,19 +19,31 @@
     <meta name="twitter:description" content="The official ZNE website!">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #121218;
-            --bg-tertiary: #1a1a22;
-            --accent: #971DFB;
-            --accent-hover: #971DFB;
+            --bg-primary: #0c0d0d;
+            --bg-secondary: #161717;
+            --bg-tertiary: #1f2020;
+            --bg-panel: #111212;
+            --accent: #92c8d2;
+            --accent-2: #6b8f9b;
+            --accent-light: #b2ccd5;
+            --accent-hover: #b2ccd5;
+            --accent-rgb: 146, 200, 210;
             --text-primary: #ffffff;
-            --text-secondary: #a0a0b0;
-            --border: #2a2a35;
-            --success: #00ff88;
+            --text-secondary: #a1a1aa;
+            --text-muted: #6b6f72;
+            --border: #242525;
+            --border-strong: #333434;
+            --gold: #ffd166;
+            --discord-1: #8093f9;
+            --discord-2: #5865f2;
+            --success: #1db954;
             --danger: #ff4757;
+            --radius-card: 24px;
+            --radius-bento: 40px;
+            --radius-pill: 1.25rem;
         }
 
         * {
@@ -40,12 +52,35 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+            pointer-events: none;
+            background:
+                radial-gradient(60% 50% at 50% 0%, rgba(var(--accent-rgb), 0.18) 0%, transparent 60%),
+                radial-gradient(40% 40% at 85% 12%, rgba(29, 185, 84, 0.06) 0%, transparent 70%),
+                radial-gradient(35% 35% at 12% 8%, rgba(var(--accent-rgb), 0.08) 0%, transparent 70%);
+        }
+
+        h1, h2, h3, .logo-text {
+            font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: -0.02em;
         }
 
         .container {
@@ -61,18 +96,24 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(10, 10, 15, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
+            background: transparent;
+            border-bottom: none;
+            padding: 14px 20px;
         }
 
         .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
-            max-width: 1200px;
+            padding: 12px 22px;
+            max-width: 1040px;
             margin: 0 auto;
+            background: radial-gradient(1161.83% 494.55% at 50% 49.09%, #111212 5.32%, #1c1b1b 30.31%);
+            backdrop-filter: blur(7.5px);
+            -webkit-backdrop-filter: blur(7.5px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-pill);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
         }
 
         .logo {
@@ -84,33 +125,37 @@
         }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--accent), #971DFB);
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent-2));
+            color: #0c0d0d;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 18px;
+            font-family: 'Space Grotesk', sans-serif;
+            box-shadow: 0 0 18px rgba(var(--accent-rgb), 0.45);
         }
 
         .logo-text {
             font-weight: 700;
-            font-size: 24px;
+            font-size: 22px;
             letter-spacing: -1px;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 26px;
             list-style: none;
         }
 
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 15px;
             transition: color 0.2s;
         }
 
@@ -119,24 +164,25 @@
         }
 
         .nav-cta {
-            background: var(--accent);
+            background: linear-gradient(180deg, var(--discord-1), var(--discord-2) 50%);
             color: white;
             padding: 10px 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.2s;
+            box-shadow: 0 6px 18px rgba(88, 101, 242, 0.3);
         }
 
         .nav-cta:hover {
-            background: var(--accent-hover);
+            filter: brightness(1.08);
             transform: translateY(-1px);
         }
 
         .event-pill-wrapper {
             display: flex;
             justify-content: center;
-            padding: 78px 20px 24px;
+            padding: 104px 20px 24px;
             position: relative;
             z-index: 900;
         }
@@ -147,28 +193,28 @@
             gap: 10px;
             padding: 10px 18px;
             border-radius: 999px;
-            background: linear-gradient(135deg, rgba(255, 209, 102, 0.16), rgba(151, 29, 251, 0.16));
-            border: 1px solid rgba(255, 209, 102, 0.45);
+            background: rgba(var(--accent-rgb), 0.08);
+            border: 1px solid rgba(var(--accent-rgb), 0.4);
             color: var(--text-primary);
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 14px;
             transition: all 0.2s;
         }
 
         .event-pill:hover {
             transform: translateY(-2px);
-            border-color: var(--gold);
-            box-shadow: 0 10px 30px rgba(255, 209, 102, 0.18);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.2);
         }
 
         .event-pill i {
-            color: var(--gold);
+            color: var(--accent);
         }
 
         @media (max-width: 768px) {
             .event-pill-wrapper {
-                padding: 82px 12px 20px;
+                padding: 96px 12px 20px;
             }
 
             .event-pill {
@@ -182,9 +228,9 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 80px;
+            padding-top: 60px;
             position: relative;
-            background: radial-gradient(ellipse at center, rgba(151, 29, 251, 0.05) 0%, transparent 70%);
+            background: radial-gradient(60% 60% at 50% 30%, rgba(var(--accent-rgb), 0.08) 0%, transparent 70%);
         }
 
         .hero-content {
@@ -196,20 +242,21 @@
 
         .hero-text h1 {
             font-size: 72px;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            letter-spacing: -3px;
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 22px;
+            letter-spacing: -0.03em;
         }
 
         .hero-text .gradient {
-            background: linear-gradient(135deg, var(--accent), #971DFB);
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-text p {
-            font-size: 20px;
+            font-size: 19px;
             color: var(--text-secondary);
             margin-bottom: 30px;
             max-width: 500px;
@@ -217,14 +264,15 @@
 
         .hero-buttons {
             display: flex;
-            gap: 15px;
+            gap: 14px;
+            flex-wrap: wrap;
         }
 
         .btn {
-            padding: 14px 28px;
-            border-radius: 10px;
+            padding: 14px 26px;
+            border-radius: 14px;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 15px;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -235,25 +283,27 @@
         }
 
         .btn-primary {
-            background: var(--accent);
-            color: white;
+            background: linear-gradient(180deg, var(--accent-light), var(--accent) 60%);
+            color: #0c0d0d;
+            box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.25);
         }
 
         .btn-primary:hover {
-            background: var(--accent-hover);
+            filter: brightness(1.06);
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(151, 29, 251, 0.3);
+            box-shadow: 0 12px 32px rgba(var(--accent-rgb), 0.35);
         }
 
         .btn-secondary {
-            background: var(--bg-tertiary);
+            background: var(--bg-panel);
             color: var(--text-primary);
-            border: 1px solid var(--border);
+            border: 1px solid var(--border-strong);
         }
 
         .btn-secondary:hover {
-            background: var(--bg-secondary);
+            background: var(--bg-tertiary);
             border-color: var(--accent);
+            color: var(--accent-light);
         }
 
         .hero-visual {
@@ -264,13 +314,13 @@
         }
 
         .bot-preview {
-            background: var(--bg-secondary);
+            background: var(--bg-panel);
             border: 1px solid var(--border);
             border-radius: 20px;
             padding: 20px;
             width: 100%;
             max-width: 400px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(var(--accent-rgb), 0.06);
         }
 
         .discord-header {
@@ -285,13 +335,14 @@
         .discord-avatar {
             width: 36px;
             height: 36px;
-            background: linear-gradient(135deg, var(--accent), #971DFB);
+            background: linear-gradient(135deg, var(--accent-light), var(--accent-2));
+            color: #0c0d0d;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 14px;
-            font-weight: 700;
+            font-weight: 800;
         }
 
         .discord-info h4 {
@@ -336,6 +387,7 @@
             font-weight: 600;
             font-size: 12px;
             margin-bottom: 2px;
+            color: var(--text-primary);
         }
 
         .discord-msg .msg-text {
@@ -343,7 +395,9 @@
         }
 
         .discord-msg.bot .msg-avatar {
-            background: linear-gradient(135deg, var(--accent), #971DFB);
+            background: linear-gradient(135deg, var(--accent-light), var(--accent-2));
+            color: #0c0d0d;
+            font-weight: 800;
         }
 
         .discord-msg.bot .msg-author {
@@ -354,22 +408,35 @@
         .stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 18px;
             margin-top: 60px;
         }
 
         .stat {
             text-align: center;
-            padding: 20px;
-            background: var(--bg-secondary);
+            padding: 24px 20px;
+            background: var(--bg-panel);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.5), transparent);
         }
 
         .stat-number {
             font-size: 32px;
             font-weight: 700;
             color: var(--accent);
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .stat-label {
@@ -389,14 +456,15 @@
         }
 
         .section-title h2 {
-            font-size: 42px;
+            font-size: 40px;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 14px;
+            letter-spacing: -0.03em;
         }
 
         .section-title p {
             color: var(--text-secondary);
-            font-size: 18px;
+            font-size: 17px;
             max-width: 600px;
             margin: 0 auto;
         }
@@ -404,39 +472,57 @@
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
+            gap: 22px;
         }
 
         .feature-card {
-            background: var(--bg-secondary);
+            background: var(--bg-panel);
             border: 1px solid var(--border);
-            border-radius: 16px;
+            border-radius: var(--radius-card);
             padding: 30px;
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-card);
+            padding: 1px;
+            background: linear-gradient(180deg, var(--border-strong), transparent 40%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0.8;
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(var(--accent-rgb), 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(var(--accent-rgb), 0.1);
         }
 
         .feature-icon {
-            width: 56px;
-            height: 56px;
-            background: rgba(151, 29, 251, 0.1);
-            border-radius: 12px;
+            width: 54px;
+            height: 54px;
+            background: linear-gradient(180deg, rgba(var(--accent-rgb), 0.18), rgba(var(--accent-rgb), 0.06));
+            border: 1px solid rgba(var(--accent-rgb), 0.25);
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
             color: var(--accent);
-            font-size: 24px;
+            font-size: 22px;
         }
 
         .feature-card h3 {
-            font-size: 20px;
+            font-size: 19px;
             margin-bottom: 10px;
+            font-weight: 600;
         }
 
         .feature-card p {
@@ -455,26 +541,32 @@
         .step {
             text-align: center;
             position: relative;
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-card);
+            padding: 36px 24px;
         }
 
         .step-number {
-            width: 60px;
-            height: 60px;
-            background: var(--bg-secondary);
-            border: 2px solid var(--accent);
+            width: 56px;
+            height: 56px;
+            background: var(--bg-tertiary);
+            border: 1px solid rgba(var(--accent-rgb), 0.5);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
             margin: 0 auto 20px;
             color: var(--accent);
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .step h3 {
             font-size: 18px;
             margin-bottom: 10px;
+            font-weight: 600;
         }
 
         .step p {
@@ -484,9 +576,9 @@
 
         /* Warning Section */
         .warning {
-            background: rgba(255, 71, 87, 0.1);
-            border: 1px solid var(--danger);
-            border-radius: 16px;
+            background: rgba(255, 71, 87, 0.08);
+            border: 1px solid rgba(255, 71, 87, 0.4);
+            border-radius: var(--radius-card);
             padding: 30px;
             text-align: center;
             margin: 60px 0;
@@ -499,6 +591,7 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            font-weight: 600;
         }
 
         .warning p {
@@ -508,31 +601,49 @@
         /* CTA Section */
         .cta {
             text-align: center;
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-            border-radius: 24px;
-            padding: 60px;
+            background: radial-gradient(120% 120% at 50% 0%, var(--bg-panel) 0%, var(--bg-tertiary) 100%);
+            border-radius: var(--radius-bento);
+            padding: 64px 40px;
             border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: "";
+            position: absolute;
+            top: -40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            height: 80%;
+            background: radial-gradient(50% 50% at 50% 50%, rgba(var(--accent-rgb), 0.16), transparent 70%);
+            pointer-events: none;
         }
 
         .cta h2 {
-            font-size: 36px;
+            font-size: 34px;
             margin-bottom: 15px;
+            letter-spacing: -0.03em;
+            position: relative;
         }
 
         .cta p {
             color: var(--text-secondary);
             margin-bottom: 30px;
             font-size: 18px;
+            position: relative;
         }
 
         /* Footer */
         footer {
-            padding: 40px 0;
+            padding: 48px 0;
             border-top: 1px solid var(--border);
             margin-top: 60px;
             text-align: center;
             color: var(--text-secondary);
             font-size: 14px;
+            background: var(--bg-panel);
         }
 
         /* Responsive */
@@ -641,7 +752,7 @@
                 <li><a href="https://zne.breed.rip/commands" target="_blank">Commands</a></li>
                 <li><a href="https://zne.breed.rip/leaderboard" target="_blank">Leaderboard</a></li>
                 <li><a href="https://zne.breed.rip/webhook" target="_blank">Webhook</a></li>
-                <li><a href="https://github.com/Ramimnur20/zne-raid-bot" target="_blank">GitHub</a></li>
+                <li><a href="https://github.com/ZNE-Opensource-project/zne-raid-bot" target="_blank">GitHub</a></li>
             </ul>
             <a href="https://discord.gg/4pQzcZxVXK" target="_blank" class="nav-cta" id="navCta">Join Server</a>
         </div>
@@ -836,13 +947,13 @@
                 </div>
 
                 <div id="githubSource" style="margin-top: 30px;">
-                    <a href="https://github.com/Ramimnur20/zne-raid-bot" target="_blank" style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">
+                    <a href="https://github.com/ZNE-Opensource-project/zne-raid-bot" target="_blank" style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">
                         <i class="fab fa-github"></i> View source on GitHub
                     </a>
                 </div>
 
                 <div class="terminal" id="terminal" style="text-align: left; max-width: 500px; margin: 25px auto 0; font-size:12px;">
-                    <div class="terminal-line"><span class="terminal-prompt">$</span> git clone https://github.com/Ramimnur20/zne-raid-bot.git</div>
+                    <div class="terminal-line"><span class="terminal-prompt">$</span> git clone https://github.com/ZNE-Opensource-project/zne-raid-bot.git</div>
                     <div class="terminal-line"><span class="terminal-prompt">$</span> Self-host your own ZNE instance</div>
                 </div>
             </div>
@@ -1213,19 +1324,19 @@
             const modal = document.createElement('div');
             modal.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:2000;';
             modal.innerHTML = `
-                <div style="background:#121218;border:1px solid #2a2a35;border-radius:16px;max-width:600px;width:90%;padding:40px;position:relative;">
+                <div style="background:#111212;border:1px solid #242525;border-radius:24px;max-width:600px;width:90%;padding:40px;position:relative;">
                     <button onclick="this.closest('[style*=\"position:fixed\"]').remove()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#fff;font-size:24px;cursor:pointer;">&times;</button>
                     <h2 style="margin-bottom:20px;font-size:28px;">Quick Setup Guide</h2>
                     <ol style="line-height:2;color:#a0a0b0;font-size:15px;padding-left:20px;">
                         <li>Clone or download the ZNE repository</li>
                         <li>Install dependencies: <code style="background:#1a1a22;padding:2px 8px;border-radius:4px;">npm install</code></li>
-                        <li>Create a Discord bot at <a href="https://discord.com/developers" target="_blank" style="color:#971DFB;">discord.com/developers</a></li>
+                        <li>Create a Discord bot at <a href="https://discord.com/developers" target="_blank" style="color:#92c8d2;">discord.com/developers</a></li>
                         <li>Add your bot token to <code style="background:#1a1a22;padding:2px 8px;border-radius:4px;">config.json</code></li>
                         <li>Run the bot: <code style="background:#1a1a22;padding:2px 8px;border-radius:4px;">node index.js</code></li>
                         <li>Invite ZNE to your target server with admin permissions</li>
                         <li>Use <code style="background:#1a1a22;padding:2px 8px;border-radius:4px;">.help</code> to see all commands</li>
                     </ol>
-                    <div style="margin-top:30px;padding-top:20px;border-top:1px solid #2a2a35;">
+                    <div style="margin-top:30px;padding-top:20px;border-top:1px solid #242525;">
                         <p style="color:#ff4757;font-size:14px;"><i class="fas fa-exclamation-triangle"></i> Requires Node.js 18+ and a Discord bot token with all permissions enabled.</p>
                     </div>
                 </div>
@@ -1316,7 +1427,7 @@
                 }
             });
 
-            console.log('%c[ZNE] Website initialized successfully', 'color: #971DFB; font-family: monospace');
+            console.log('%c[ZNE] Website initialized successfully', 'color: #92c8d2; font-family: monospace');
         }
 
         document.addEventListener('DOMContentLoaded', init);

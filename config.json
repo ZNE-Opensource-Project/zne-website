@@ -19,6 +19,7 @@
       "links": [
         { "label": "Features", "href": "#features" },
         { "label": "How it Works", "href": "#how" },
+        { "label": "Streaming", "href": "https://zne.breed.rip/streaming", "targetBlank": true },
         { "label": "Commands", "href": "https://zne.breed.rip/commands", "targetBlank": true },
         { "label": "Leaderboard", "href": "https://zne.breed.rip/leaderboard", "targetBlank": true },
         { "label": "Webhook", "href": "https://zne.breed.rip/webhook", "targetBlank": true },
